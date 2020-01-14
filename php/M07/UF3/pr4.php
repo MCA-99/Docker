@@ -20,7 +20,8 @@ $pass = md5($_POST['psw']);
 $sql = "SELECT * FROM usuaris WHERE user_name = :user";
 
 $statement = $con->prepare($sql);
-$statement->bindParam('user', $_GET['username']); 
+// $statement->bindParam('user', $_GET['username']); 
+$statement->execute(array('user' => $_GET['username']));
 
 if (!$statement->execute()) {
      die("Ha fallat la consulta, comprova usuari, contrasenya, BD, nom taula i nom columna");
